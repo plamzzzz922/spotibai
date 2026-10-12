@@ -1,0 +1,22 @@
+{% extends 'music/base.html' %}
+{% block title %}Log in · Spotibai{% endblock %}
+{% block app_class %} no-side{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block topbar %}{% endblock %}
+{% block nowbar %}{% endblock %}
+{% block content_class %}centered{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <div class="avatar avatar-xl" aria-hidden="true"></div>
+  <h1 class="auth-title">Welcome, Log in</h1>
+  <!-- Prototype only: the inputs have no name, so nothing is sent and the button just opens Home. -->
+  <form class="auth-form" action="{% url 'home' %}" method="get">
+    <label class="sr-only" for="id_username">Username or Email</label>
+    <input type="text" id="id_username" placeholder="Username or Email" autocomplete="username">
+    <label class="sr-only" for="id_password">Password</label>
+    <input type="password" id="id_password" placeholder="Password" autocomplete="current-password">
+    <button class="btn" type="submit">Log in</button>
+  </form>
+  <p class="auth-alt">Don't have an account? <a href="{% url 'register' %}">Create one</a></p>
+</div>
+{% endblock %}

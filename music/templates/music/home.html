@@ -1,0 +1,22 @@
+{% extends 'music/base.html' %}
+{% block title %}Home · Spotibai{% endblock %}
+
+{% block content %}
+<section aria-labelledby="h-liked">
+  <h2 class="section-title" id="h-liked"><a href="{% url 'liked' %}">Liked Songs<span class="tri" aria-hidden="true"></span></a></h2>
+  <div class="grid grid-row" data-collection="liked" data-limit="6">
+    {% for song in songs %}{% include 'music/_song_card.html' %}{% endfor %}
+  </div>
+  <p class="empty" data-empty hidden>Tap the star on a song to save it here.</p>
+</section>
+
+<section aria-labelledby="h-playlist">
+  <h2 class="section-title" id="h-playlist"><a href="{% url 'playlists' %}">My Playlist<span class="tri" aria-hidden="true"></span></a></h2>
+  <div class="grid grid-row">{% for playlist in playlists %}{% include 'music/_playlist_card.html' %}{% endfor %}</div>
+</section>
+
+<section aria-labelledby="h-trending">
+  <h2 class="section-title" id="h-trending"><a href="{% url 'trending' %}">Trending now<span class="tri" aria-hidden="true"></span></a></h2>
+  <div class="grid grid-row">{% for song in trending %}{% include 'music/_song_card.html' %}{% endfor %}</div>
+</section>
+{% endblock %}

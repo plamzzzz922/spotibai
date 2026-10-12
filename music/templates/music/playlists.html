@@ -1,0 +1,7 @@
+{% extends 'music/base.html' %}
+{% block title %}My Playlist · Spotibai{% endblock %}
+
+{% block content %}
+<h1 class="page-title">My Playlist</h1>
+<div class="grid">{% for playlist in playlists %}{% include 'music/_playlist_card.html' %}{% endfor %}</div>
+{% endblock %}

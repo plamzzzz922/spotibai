@@ -1,0 +1,12 @@
+{% extends 'music/base.html' %}
+{% block title %}{{ title }} · Spotibai{% endblock %}
+
+{% block content %}
+{% url 'home' as home_url %}
+<a class="back" href="{{ back_url|default:home_url }}"><span aria-hidden="true">&larr;</span> Back</a>
+<h1 class="page-title">{{ title }}</h1>
+<div class="grid"{% if collection %} data-collection="{{ collection }}"{% endif %}>
+  {% for song in songs %}{% include 'music/_song_card.html' %}{% endfor %}
+</div>
+<p class="empty" data-empty{% if songs %} hidden{% endif %}>{{ empty_message }}</p>
+{% endblock %}

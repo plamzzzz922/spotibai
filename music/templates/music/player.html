@@ -1,0 +1,44 @@
+{% extends 'music/base.html' %}
+{% load static %}
+{% block title %}{{ song.title }} · Spotibai{% endblock %}
+{% block head_scripts %}<script src="{% static 'music/player.js' %}" defer></script>{% endblock %}
+{% block nowbar %}{% endblock %}
+
+{% block content %}
+<a class="back" href="{% url 'home' %}"><span aria-hidden="true">&larr;</span> Back</a>
+<div class="player" data-song-id="{{ song.id }}" data-duration="{{ song.duration }}"{% if song.audio %} data-audio="{% static song.audio %}"{% endif %}>
+  <div class="art">{% if song.cover %}<img src="{% static song.cover %}" alt="Cover art for {{ song.title }}">{% endif %}</div>
+
+  <div class="player-info">
+    <div class="song-row">
+      <div>
+        <h1 class="song-title">{{ song.title }}</h1>
+        <p class="song-by">By: {{ song.artist }}</p>
+      </div>
+      <div class="like-inline">
+        <button type="button" class="star like-btn" data-like="{{ song.id }}" data-title="{{ song.title }}" aria-pressed="false" aria-label="Add {{ song.title }} to liked songs">&#9733;</button>
+      </div>
+    </div>
+
+    <div class="progress">
+      <p class="time"><span id="elapsed">0:00</span>/{{ song.duration_display }}</p>
+      <div class="bar" role="progressbar" aria-label="Song progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="fill" id="bar-fill"></span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <a class="ctl" href="{% url 'player' prev_song.id %}" aria-label="Previous song">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor" aria-hidden="true"><path d="M11 6v12L2 12zM22 6v12l-9-6z"/></svg>
+      </a>
+      <button class="ctl ctl-main" id="toggle" type="button" aria-label="Play">
+        <svg class="i-play" viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="i-pause" viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+      </button>
+      <a class="ctl" href="{% url 'player' next_song.id %}" aria-label="Next song">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor" aria-hidden="true"><path d="M13 6v12l9-6zM2 6v12l9-6z"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

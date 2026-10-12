@@ -1,0 +1,17 @@
+{% extends 'music/base.html' %}
+{% block title %}Account · Spotibai{% endblock %}
+
+{% block content %}
+<a class="back" href="{% url 'home' %}"><span aria-hidden="true">&larr;</span> Back</a>
+<div class="account">
+  <div class="avatar avatar-lg" aria-hidden="true"></div>
+  <div>
+    <h1 class="account-name">Username</h1>
+    <nav class="account-links" aria-label="Account">
+      <a href="{% url 'recent' %}">Recent Music</a>
+      <a href="{% url 'settings' %}">Settings</a>
+      <a href="{% url 'login' %}">Log Out</a>
+    </nav>
+  </div>
+</div>
+{% endblock %}

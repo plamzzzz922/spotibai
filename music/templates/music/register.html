@@ -1,0 +1,24 @@
+{% extends 'music/base.html' %}
+{% block title %}Create account · Spotibai{% endblock %}
+{% block app_class %} no-side{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block topbar %}{% endblock %}
+{% block nowbar %}{% endblock %}
+{% block content_class %}centered{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <div class="avatar avatar-xl" aria-hidden="true"></div>
+  <h1 class="auth-title">Create your account</h1>
+  <!-- Prototype only: nothing is saved, the button just opens Home. -->
+  <form class="auth-form" action="{% url 'home' %}" method="get">
+    <label class="sr-only" for="id_new_username">Username</label>
+    <input type="text" id="id_new_username" placeholder="Username" autocomplete="username">
+    <label class="sr-only" for="id_new_email">Email</label>
+    <input type="email" id="id_new_email" placeholder="Email" autocomplete="email">
+    <label class="sr-only" for="id_new_password">Password</label>
+    <input type="password" id="id_new_password" placeholder="Password" autocomplete="new-password">
+    <button class="btn" type="submit">Create account</button>
+  </form>
+  <p class="auth-alt">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+</div>
+{% endblock %}

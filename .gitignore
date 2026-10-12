@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+# keep copyrighted audio out of the repository
+music/static/music/audio/*
+!music/static/music/audio/.gitkeep

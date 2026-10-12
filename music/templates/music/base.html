@@ -1,0 +1,50 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Spotibai{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'music/style.css' %}">
+  <script src="{% static 'music/app.js' %}" defer></script>
+  {% block head_scripts %}{% endblock %}
+</head>
+<body>
+  <div class="app{% block app_class %}{% endblock %}">
+    {% block sidebar %}{% include 'music/_sidebar.html' %}{% endblock %}
+    <main class="main">
+      {% block topbar %}
+      <header class="topbar">
+        <form class="search" action="{% url 'search' %}" method="get" role="search">
+          <label class="sr-only" for="q">Search songs</label>
+          <input type="search" id="q" name="q" placeholder="Search songs or artists...">
+        </form>
+        <a class="avatar-link" href="{% url 'account' %}" aria-label="Your account">
+          <span class="avatar avatar-sm" aria-hidden="true"></span>
+          <span class="avatar-name">Username</span>
+        </a>
+      </header>
+      {% endblock %}
+      <div class="content {% block content_class %}{% endblock %}">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+    {% block nowbar %}
+    <footer class="nowbar" id="mini-player" data-url-template="{% url 'player' 0 %}" hidden>
+      <span class="disc" aria-hidden="true"></span>
+      <div class="mini-text">
+        <strong id="mini-title"></strong>
+        <span id="mini-artist"></span>
+      </div>
+      <a class="mini-open" id="mini-link" href="#" aria-label="Open player">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <span>Open player</span>
+      </a>
+    </footer>
+    {{ songs_json|json_script:"songs-data" }}
+    {% endblock %}
+  </div>
+</body>
+</html>
